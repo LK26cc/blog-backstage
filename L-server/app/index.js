@@ -1,8 +1,7 @@
 var koa = require('koa')
 var app = koa()
+var route = require('./app/router')
 
-app.use(function *(){
-  this.body = "Hello World"
-})
+app.use()
 
 app.listen(8000)
