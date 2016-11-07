@@ -1,7 +1,7 @@
 var koa = require('koa')
 var app = koa()
-var route = require('./app/router')
+var router = require('./router')
 
-app.use()
+app.use(router.routes())
 
 app.listen(8000)

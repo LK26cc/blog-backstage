@@ -1,27 +1,6 @@
-var _ = require('koa-route');
-var koa = require('koa');
-var app = koa();
+var router = require('koa-router')();
+var pets = require('./pets/pets');
+router.get('/pets', pets.list);
+router.get('/pets/:name', pets.show);
 
-var db = {
-  tobi: { name: 'tobi', species: 'ferret' },
-  loki: { name: 'loki', species: 'ferret' },
-  jane: { name: 'jane', species: 'ferret' }
-};
-
-var pets = {
-  list: function *(){
-    var names = Object.keys(db);
-    this.body = 'pets: ' + names.join(', ');
-  },
-
-  show: function *(name){
-    var pet = db[name];
-    if (!pet) return this.throw('cannot find that pet', 404);
-    this.body = pet.name + ' is a ' + pet.species;
-  }
-};
-
-app.use(_.get('/pets', pets.list));
-app.use(_.get('/pets/:name', pets.show));
-
-// app.listen(3000);
+module.exports = router
