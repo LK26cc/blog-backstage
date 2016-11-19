@@ -17,4 +17,4 @@ var pets = {
   }
 };
 
-module.exports = pets
+module.exports = pets;

@@ -12,6 +12,7 @@
   "dependencies": {
     "koa": "^1.2.4",
     "koa-router": "^5.4.0",
-    "lodash": "^4.16.6"
+    "lodash": "^4.16.6",
+    "mysql": "^2.12.0"
   }
 }
