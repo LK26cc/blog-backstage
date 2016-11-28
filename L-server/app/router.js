@@ -1,12 +1,12 @@
 var router = require('koa-router')();
-var pets = require('./pets/pets');
 var user = require('./user/user');
 var bodyParser = require('koa-body')();
 
-router.get('/pets', pets.list);
-router.get('/pets/:name', pets.show);
 router.get('/user',user.list);
+router.get('/user/:id',user.getById);
 router.post('/login',bodyParser,user.login);
 router.post('/register',bodyParser,user.register);
+router.post('/user/update',bodyParser,user.update);
+router.get('/user/delete/:id',user.delete);
 
 module.exports = router;

@@ -20,8 +20,7 @@ var User = sequelize.define(
   {
     'name':{
       'type':Sequelize.CHAR(10),
-      'allowNull':false,
-      'unique': true
+      'allowNull':false
     },
     'password':{
       'type':Sequelize.CHAR(10),
@@ -33,5 +32,11 @@ var User = sequelize.define(
     }
   }
 );
-
+//建表
+// User.sync({force: true}).then(function () {
+//   return User.create({
+//     name: 'root',
+//     password: '123456'
+//   });
+// });
 exports.User = User;
