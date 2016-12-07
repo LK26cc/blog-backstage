@@ -14,7 +14,7 @@ module.exports = {
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.scss$/, loader: 'style!css!sass?sourceMap'},
       { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'},
-      { test: /\.js[x]?$/, loader:'babel-loader',exclude:/node_modules/,query: {presets: ['es2015','react']}}
+      { test: /\.js[x]?$/, loader:'babel-loader',exclude:/node_modules/}
     ]
   },
   resolve:{
