@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --display-error-details"
+    "dev": "webpack-dev-server --display-error-details",
+    "eslint": "eslint --ext .jsx,.js src"
   },
   "author": "L26_cc@126.com",
   "license": "ISC",
@@ -20,6 +21,9 @@
     "babel-preset-react": "6.3.13",
     "babel-preset-stage-0": "6.5.0",
     "babel-register": "^6.5.2",
+    "eslint": "^3.11.1",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-react": "^6.8.0",
     "open-browser-webpack-plugin": "0.0.3",
     "react": "15.0.2",
     "react-addons-test-utils": "15.0.2",

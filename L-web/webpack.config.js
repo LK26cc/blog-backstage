@@ -22,7 +22,11 @@ module.exports = {
   },
   devServer: {
     inline:true,//inline模式
-    hot: true//热更替
+    hot: true,//热更替
+    historyApiFallback: true
+  },
+  eslint: {
+    configFile: './.eslintrc'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),//热更替必须加这个插件，否则disable
