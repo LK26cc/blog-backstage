@@ -18,7 +18,7 @@ module.exports = {
     ]
   },
   resolve:{
-    extensions: ['', '.js', '.jsx', '.scss']
+    extensions: ['', '.js', '.jsx', '.css', '.scss']
   },
   devServer: {
     inline:true,//inline模式

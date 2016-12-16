@@ -4,9 +4,10 @@ import { Router, Route, hashHistory,IndexRoute } from 'react-router'
 import App from './App/App'
 import Login from './Login/Login'
 import Welcome from './Welcome/Welcome'
+import 'antd/dist/antd.css'
 
 const validate = function(nextState, replace, next){//判断是否登录
-  let isLogin = true
+  let isLogin = false
   if(isLogin){
     //要再次校验路由，否则会栈溢出
     if (nextState.location.pathname === '/login' || nextState.location.pathname === '/') {
