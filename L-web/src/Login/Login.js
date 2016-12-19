@@ -20,7 +20,26 @@ class Login extends Component {
       message.error('请输入用户名和密码')
       return
     }
-    console.log('LoginForm->handleSubmit')
+    fetch('http://localhost:8000/login',{
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body:JSON.stringify({name: this.state.username, password: this.state.password})
+    }).then(function(response){
+      if(response.status==200){
+        return response.json()
+      }
+    }).then(function(result){
+      if(result.status==0){
+        message.success('登录成功！')
+      }else{
+        message.error('登录失败！')
+      }
+    }).catch(function(response){
+      console.log(response)
+    })
   }
   handleUserName(e){
     this.setState({username:e.target.value})
