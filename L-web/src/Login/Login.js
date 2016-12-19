@@ -1,20 +1,50 @@
 import React,{Component} from 'react'
 import { Card, Col, Row } from 'antd'
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import { message, Form, Icon, Input, Button, Checkbox } from 'antd'
 import './Login.css'
 const FormItem = Form.Item;
 
 class Login extends Component {
-  constructor (){
-    super()
+  constructor (props){
+    super(props)
+    this.state = {
+      username:'',
+      password:''
+    }
+    this.handleUserName = this.handleUserName.bind(this)
+    this.handlePassword = this.handlePassword.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  handleSubmit(e) {
+    if(this.state.username == '' || this.state.password == ''){
+      message.error('请输入用户名和密码')
+      return
+    }
+    console.log('LoginForm->handleSubmit')
+  }
+  handleUserName(e){
+    this.setState({username:e.target.value})
+  }
+  handlePassword(e){
+    this.setState({password:e.target.value})
   }
   render(){
     return (
       <div style={{ background: '#ECECEC', padding: '100px',height:'100%',width:'100%', position:'absolute' }}>
         <Row type="flex" justify="center" align="middle">
-          <Col span={4}>
+          <Col span={6}>
             <Card title="登录" bordered={false}>
-              <LoginForm />
+              <Form onSubmit={this.handleSubmit} className="login-form">
+                <FormItem>
+                  <Input addonBefore={<Icon type="user" />} onChange={this.handleUserName} value={this.state.username} placeholder="用户名" />
+                </FormItem>
+                <FormItem>
+                  <Input addonBefore={<Icon type="lock" />} onChange={this.handlePassword} value={this.state.password} type="password" placeholder="密码" />
+                </FormItem>
+                <FormItem>
+                  <Button type="primary" htmlType="submit" className="login-form-button">登录</Button>
+                </FormItem>
+              </Form>
             </Card>
           </Col>
         </Row>
@@ -22,54 +52,4 @@ class Login extends Component {
     )
   }
 }
-
-const LoginForm = Form.create()(React.createClass({
-  handleSubmit(e) {
-    e.preventDefault()
-    console.log('LoginForm->handleSubmit')
-  },
-  checkForm(rule, value, callback){
-    const form = this.props.form
-    console.log(form)
-    // if(!value){
-    //   form.validateFields(['username'], { force: true })
-    // }
-    console.log(rule)
-    callback()
-  },
-  render() {
-    const { getFieldDecorator } = this.props.form
-    return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
-        <FormItem hasFeedback>
-          {getFieldDecorator('username', {
-            rules: [{
-              required: true, message: '请输入用户名'
-            }, {
-              validator: this.checkForm
-            }]
-          })(
-            <Input addonBefore={<Icon type="user" />} placeholder="用户名" />
-          )}
-        </FormItem>
-        <FormItem hasFeedback>
-          {getFieldDecorator('password', {
-            rules: [{
-              required: true, message: '请输入密码'
-            }, {
-              validator: this.checkForm
-            }]
-          })(
-            <Input addonBefore={<Icon type="lock" />} type="password" placeholder="密码" />
-          )}
-        </FormItem>
-        <FormItem>
-          <Button type="primary" htmlType="submit" className="login-form-button">
-            登录
-          </Button>
-        </FormItem>
-      </Form>
-    )
-  }
-}))
 export default Login
