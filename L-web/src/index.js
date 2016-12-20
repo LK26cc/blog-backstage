@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Router, Route, hashHistory,IndexRoute } from 'react-router'
 import App from './App/App'
 import Login from './Login/Login'
+import Register from './Register/Register'
 import Welcome from './Welcome/Welcome'
 import 'antd/dist/antd.css'
 
@@ -28,6 +29,7 @@ const routes = (
       <Route component={App}>
         <Route path='welcome' component={Welcome}/>
         <Route path='login' component={Login}/>
+        <Route path='register' component={Register}/>
       </Route>
     </Route>
   </Router>

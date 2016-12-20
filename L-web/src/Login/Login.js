@@ -4,6 +4,7 @@ import { message, Form, Icon, Input, Button, Checkbox } from 'antd'
 import './Login.css'
 const FormItem = Form.Item;
 import http from '../utils/http'
+import { Link } from 'react-router'
 class Login extends Component {
   constructor (props){
     super(props)
@@ -50,6 +51,7 @@ class Login extends Component {
                 </FormItem>
                 <FormItem>
                   <Button type="primary" htmlType="submit" className="login-form-button">登录</Button>
+                  <Link to={`/register`}>点击注册！</Link>
                 </FormItem>
               </Form>
             </Card>
