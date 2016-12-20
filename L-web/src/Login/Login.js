@@ -3,7 +3,7 @@ import { Card, Col, Row } from 'antd'
 import { message, Form, Icon, Input, Button, Checkbox } from 'antd'
 import './Login.css'
 const FormItem = Form.Item;
-
+import http from '../utils/http'
 class Login extends Component {
   constructor (props){
     super(props)
@@ -16,29 +16,17 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleSubmit(e) {
+    let router = this.context.router//路由跳转
     if(this.state.username == '' || this.state.password == ''){
       message.error('请输入用户名和密码')
       return
     }
-    fetch('http://localhost:8000/login',{
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: "POST",
-      body:JSON.stringify({name: this.state.username, password: this.state.password})
-    }).then(function(response){
-      if(response.status==200){
-        return response.json()
-      }
-    }).then(function(result){
-      if(result.status==0){
-        message.success('登录成功！')
-      }else{
-        message.error('登录失败！')
-      }
-    }).catch(function(response){
-      console.log(response)
+    http.post('login',{name: this.state.username, password: this.state.password},
+    function(result){
+      message.success(result.msg)
+      router.push('/welcome')
+    },function(error){
+      message.error(error.msg)
     })
   }
   handleUserName(e){
@@ -70,5 +58,8 @@ class Login extends Component {
       </div>
     )
   }
+}
+Login.contextTypes = {
+  router: React.PropTypes.object.isRequired
 }
 export default Login
