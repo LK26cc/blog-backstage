@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import { Card, Col, Row } from 'antd'
 import { message, Form, Icon, Input, Button, Checkbox } from 'antd'
 import './Login.css'
-const FormItem = Form.Item;
+const FormItem = Form.Item
 import http from '../utils/http'
 import { Link } from 'react-router'
 class Login extends Component {
@@ -17,6 +17,7 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleSubmit(e) {
+    e.preventDefault()
     let router = this.context.router//路由跳转
     if(this.state.username == '' || this.state.password == ''){
       message.error('请输入用户名和密码')
