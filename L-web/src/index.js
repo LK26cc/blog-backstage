@@ -6,10 +6,11 @@ import Login from './Login/Login'
 import Register from './Register/Register'
 import Welcome from './Welcome/Welcome'
 import 'antd/dist/antd.css'
-
+import isLogin from './Components/isLogin'
 const validate = function(nextState, replace, next){//判断是否登录
-  let isLogin = false
-  if(isLogin){
+  let Login = isLogin()
+  console.log(nextState.location.pathname,Login)
+  if(Login){
     //要再次校验路由，否则会栈溢出
     if (nextState.location.pathname === '/login' || nextState.location.pathname === '/') {
       replace('/welcome')//相当于重定向，不会在浏览器中留下重定向前的历史
@@ -27,9 +28,9 @@ const routes = (
     <Route path="/" onEnter={validate}>
       <IndexRoute component={Welcome}></IndexRoute>
       <Route component={App}>
-        <Route path='welcome' component={Welcome}/>
-        <Route path='login' component={Login}/>
-        <Route path='register' component={Register}/>
+        <Route path='/welcome' component={Welcome}/>
+        <Route path='/login' component={Login}/>
+        <Route path='/register' component={Register}/>
       </Route>
     </Route>
   </Router>
