@@ -1,10 +1,8 @@
 import React,{Component} from 'react'
 import './Welcome.css'
-import isLogin from '../Components/isLogin'
 class Welcome extends Component {
   constructor (){
     super()
-    isLogin()
   }
   render(){
     return (

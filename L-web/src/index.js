@@ -8,19 +8,18 @@ import Welcome from './Welcome/Welcome'
 import 'antd/dist/antd.css'
 import isLogin from './Components/isLogin'
 const validate = function(nextState, replace, next){//判断是否登录
-  let Login = isLogin()
-  console.log(nextState.location.pathname,Login)
-  if(Login){
+  isLogin().then(function(){
     //要再次校验路由，否则会栈溢出
     if (nextState.location.pathname === '/login' || nextState.location.pathname === '/') {
       replace('/welcome')//相当于重定向，不会在浏览器中留下重定向前的历史
     }
-  } else {
+    next()
+  },function(){
     if (nextState.location.pathname !== '/login') {
       replace('/login')
     }
-  }
-  next()
+    next()
+  })
 }
 
 const routes = (

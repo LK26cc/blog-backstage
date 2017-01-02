@@ -25,6 +25,7 @@ class Login extends Component {
     }
     http.post('login',{name: this.state.username, password: this.state.password},
     function(result){
+      localStorage.setItem('token',result.token);
       message.success(result.msg)
       router.push('/welcome')
     },function(error){

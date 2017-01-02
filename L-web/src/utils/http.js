@@ -7,11 +7,13 @@ const http = {
   },
   get:function(api,successFuc,errorFuc){
     let conf = this.config,
-        url = conf.protocol + conf.url + ':' + conf.port + '/' + api
+        url = conf.protocol + conf.url + ':' + conf.port + '/' + api,
+        token = localStorage.getItem('token')?localStorage.getItem('token'):''
     fetch(url,{
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'token':token
       },
       method: "GET"
     }).then(function(response){
@@ -31,11 +33,13 @@ const http = {
   },
   post:function(api,body,successFuc,errorFuc){
     let conf = this.config,
-        url = conf.protocol + conf.url + ':' + conf.port + '/' + api
+        url = conf.protocol + conf.url + ':' + conf.port + '/' + api,
+        token = localStorage.getItem('token')?localStorage.getItem('token'):''
     fetch(url,{
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'token':token
       },
       method: "POST",
       body:JSON.stringify(body)
