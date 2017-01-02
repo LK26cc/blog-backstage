@@ -1,7 +1,9 @@
 var db_models = require('../init');
 var user_service = db_models.User;
+var jwt = require('koa-jwt');
+var app_secret = require('../conf').app_secret;
 var user = {
-  list:function *(){
+  list:function *(next){
     var rows = yield user_service.findAll();//返回数组
     if(rows.length===0){
       this.body = {
@@ -16,8 +18,9 @@ var user = {
         data:rows
       };
     }
+    yield next;
   },
-  getById:function *(id){
+  getById:function *(next){
     var row = yield user_service.findById(this.params.id);
     if(row){
        this.body = {
@@ -32,8 +35,9 @@ var user = {
          data:{}
        };
      }
+     yield next;
   },
-  login:function *(){
+  login:function *(next){
     var name = this.request.body.name,
         password = this.request.body.password;
     var row = yield user_service.findOne({
@@ -46,6 +50,7 @@ var user = {
        this.body = {
          status:0,
          msg:'登录成功！',
+         token:jwt.sign(row.dataValues, app_secret.secret , {expiresIn: 30}),//秒
          data:row.dataValues
        };
      }else{//null
@@ -55,8 +60,9 @@ var user = {
          data:{}
        };
      }
+     yield next;
   },
-  register:function *(){
+  register:function *(next){
     var name = this.request.body.name,
         password = this.request.body.password;
     var row = yield user_service.create({
@@ -76,8 +82,9 @@ var user = {
          data:{}
        };
      }
+     yield next;
   },
-  update:function *(){
+  update:function *(next){
     var id = this.request.body.id,
         name = this.request.body.name,
         department = this.request.body.department;
@@ -110,8 +117,9 @@ var user = {
         data:{}
       };
     }
+    yield next;
   },
-  delete:function *(){
+  delete:function *(next){
     var row = yield user_service.destroy({
       'where':{
         'id':this.params.id
@@ -130,7 +138,15 @@ var user = {
         data:{}
       };
     }
-
+    yield next;
+  },
+  isLogin:function *(next){
+    this.body = {
+      status:0,
+      msg:'操作成功！',
+      data:{}
+    };
+    yield next;
   }
 }
 

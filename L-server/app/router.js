@@ -8,5 +8,6 @@ router.post('/login',bodyParser,user.login);
 router.post('/register',bodyParser,user.register);
 router.post('/user/update',bodyParser,user.update);
 router.get('/user/delete/:id',user.delete);
+router.get('/isLogin',user.isLogin);
 
 module.exports = router;
