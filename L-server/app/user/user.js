@@ -50,7 +50,7 @@ var user = {
        this.body = {
          status:0,
          msg:'登录成功！',
-         token:jwt.sign(row.dataValues, app_secret.secret , {expiresIn: 30}),//秒
+         token:jwt.sign(row.dataValues, app_secret.secret , {expiresIn: 3600}),//秒
          data:row.dataValues
        };
      }else{//null
