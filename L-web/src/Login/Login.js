@@ -9,8 +9,8 @@ class Login extends Component {
   constructor (props){
     super(props)
     this.state = {
-      username:'',
-      password:''
+      username:'root',
+      password:'123456'
     }
     this.handleUserName = this.handleUserName.bind(this)
     this.handlePassword = this.handlePassword.bind(this)
@@ -25,7 +25,9 @@ class Login extends Component {
     }
     http.post('login',{name: this.state.username, password: this.state.password},
     function(result){
-      localStorage.setItem('token',result.token);
+      localStorage.setItem('token',result.token)
+      localStorage.setItem('username',result.data.name)
+      localStorage.setItem('user',JSON.stringify(result.data))
       message.success(result.msg)
       router.push('/welcome')
     },function(error){

@@ -28,9 +28,9 @@ const routes = (
       <IndexRoute component={Welcome}></IndexRoute>
       <Route component={App}>
         <Route path='/welcome' component={Welcome}/>
-        <Route path='/login' component={Login}/>
-        <Route path='/register' component={Register}/>
       </Route>
+      <Route path='/login' component={Login}/>
+      <Route path='/register' component={Register}/>
     </Route>
   </Router>
 )

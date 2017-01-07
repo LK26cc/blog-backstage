@@ -4,7 +4,7 @@ import { message, Form, Icon, Input, Button, Checkbox } from 'antd'
 import './Register.css'
 const FormItem = Form.Item
 import http from '../utils/http'
-
+import { Link } from 'react-router'
 class Register extends Component {
   constructor(props){
     super(props)
@@ -32,8 +32,15 @@ class Register extends Component {
     }
     http.post('register',{name: this.state.username, password: this.state.password},
     function(result){
-      message.success(result.msg)
-      router.push('/welcome')
+      http.post('login',{name: this.state.username, password: this.state.password},
+      function(result){
+        localStorage.setItem('token',result.token)
+        localStorage.setItem('username',this.state.username);
+        message.success(result.msg)
+        router.push('/welcome')
+      },function(error){
+        message.error(error.msg)
+      })
     },function(error){
       message.error(error.msg)
     })
@@ -81,6 +88,7 @@ class Register extends Component {
                 <FormItem>
                   <span className="error-info">{this.state.errorText}</span>
                   <Button type="primary" htmlType="submit" className="register-form-button">注册</Button>
+                  <Link to={`/login`}>点击登录！</Link>
                 </FormItem>
               </Form>
             </Card>
