@@ -1,0 +1,7 @@
+.ant-layout-aside .ant-layout-header {
+  background: #FFFFFF;
+  padding:0 0;
+}
+.ant-layout-aside .ant-layout-header .header-menu>li {
+  float: right;
+}
