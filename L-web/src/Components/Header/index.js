@@ -7,7 +7,6 @@ const SubMenu = Menu.SubMenu;
 class Header extends Component {
   constructor (props){
     super(props)
-    console.log(this)
   }
   handleClick (item) {//点击 menuitem 调用此函数
     localStorage.clear()

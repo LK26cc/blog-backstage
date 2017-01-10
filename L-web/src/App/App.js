@@ -6,6 +6,7 @@ import Footer from '../Components/Footer/'
 import './App.css'
 class App extends Component {
   render(){
+    let containerHeight = document.body.clientHeight - 64 - 64 - 18- 48
     const user = JSON.parse(localStorage.getItem('user'))
     return (
       <div className="ant-layout-aside">
@@ -13,7 +14,7 @@ class App extends Component {
         <div className="ant-layout-main">
           <Header user={user} />
           <NavPath />
-          <div className="ant-layout-container">
+          <div className="ant-layout-container" style={{height:containerHeight}}>
             <div className="ant-layout-content">
               {this.props.children}
             </div>

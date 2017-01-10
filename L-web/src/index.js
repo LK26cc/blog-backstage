@@ -7,6 +7,7 @@ import Register from './Register/Register'
 import Welcome from './Welcome/Welcome'
 import 'antd/dist/antd.css'
 import isLogin from './Components/isLogin'
+import UserList from './User/User'
 const validate = function(nextState, replace, next){//判断是否登录
   isLogin().then(function(){
     //要再次校验路由，否则会栈溢出
@@ -28,6 +29,7 @@ const routes = (
       <IndexRoute component={Welcome}></IndexRoute>
       <Route component={App}>
         <Route path='/welcome' component={Welcome}/>
+        <Route path='/userList' component={UserList}/>
       </Route>
       <Route path='/login' component={Login}/>
       <Route path='/register' component={Register}/>
