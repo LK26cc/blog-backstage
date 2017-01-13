@@ -11,11 +11,9 @@ class Sidebar extends Component {
   }
   handleonSelect(item){
     console.log('handleonSelect')
-    console.log(item)
   }
   handleonClick(item){//Menu上的onClick先执行，Menu上的onSelect后执行，两个的区别是item.keyPath,前者包含外层SubMenu的key
     console.log('handleonClick')
-    console.log(item)
   }
   render (){
     return (

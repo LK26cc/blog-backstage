@@ -35,13 +35,14 @@ class Register extends Component {
       http.post('login',{name: this.state.username, password: this.state.password},
       function(result){
         localStorage.setItem('token',result.token)
-        localStorage.setItem('username',this.state.username);
+        localStorage.setItem('username',result.data.name)
+        localStorage.setItem('user',JSON.stringify(result.data))
         message.success(result.msg)
         router.push('/welcome')
       },function(error){
         message.error(error.msg)
       })
-    },function(error){
+    }.bind(this),function(error){
       message.error(error.msg)
     })
   }

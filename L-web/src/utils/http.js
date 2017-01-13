@@ -29,6 +29,8 @@ const http = {
     }).catch(function(response){
       console.log(response)
       message.error('系统发生错误！')
+      errorFuc(response)
+
     })
   },
   post:function(api,body,successFuc,errorFuc){
