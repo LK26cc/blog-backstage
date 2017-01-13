@@ -4,8 +4,12 @@ var jwt = require('koa-jwt');
 var app_secret = require('../conf').app_secret;
 var user = {
   list:function *(next){
-    var rows = yield user_service.findAll();//返回数组
-    if(rows.length===0){
+    var countPerPage = 10;
+    var result = yield user_service.findAndCountAll({
+      'limit': countPerPage,
+      'offset': countPerPage * (this.params.currentPage - 1)
+    });//返回数组
+    if(result.rows.length===0){
       this.body = {
         status:0,
         msg:'没有查到相关数据',
@@ -15,7 +19,8 @@ var user = {
       this.body = {
         status:0,
         msg:'',
-        data:rows
+        count:result.count,
+        data:result.rows
       };
     }
     yield next;

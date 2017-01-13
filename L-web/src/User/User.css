@@ -1,0 +1,11 @@
+.list:hover {
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  border-color: transparent;
+  z-index: 1;
+}
+.divider {
+  margin: 0 3px;
+  display: inline-block;
+  height: 8px;
+  width: 1px;
+}
