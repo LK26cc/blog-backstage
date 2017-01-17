@@ -69,10 +69,13 @@ var user = {
   },
   register:function *(next){
     var name = this.request.body.name,
-        password = this.request.body.password;
+        password = this.request.body.password,
+        department = this.request.body.department;
+        console.log(department)
     var row = yield user_service.create({
       'name':name,
-      'password':password
+      'password':password,
+      'department':department?department:null
     });
     if(row){
       this.body = {

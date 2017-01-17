@@ -32,6 +32,17 @@ var User = sequelize.define(
     }
   }
 );
+//角色表
+var Department = sequelize.define('department',{
+  'name':{
+    'type':Sequelize.CHAR(20),
+    'allowNull':false
+  },
+  'access':{
+    'type':Sequelize.CHAR(200),
+    'allowNull':true
+  }
+})
 //建表
 // User.sync({force: true}).then(function () {
 //   return User.create({
@@ -39,4 +50,12 @@ var User = sequelize.define(
 //     password: '123456'
 //   });
 // });
+//
+// Department.sync({force:true}).then(function(){
+//   return Department.create({
+//     name:'超级管理员',
+//     access:''
+//   })
+// })
 exports.User = User;
+exports.Department = Department;
